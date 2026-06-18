@@ -4,6 +4,8 @@ A Python-based quiz application built for CDAC. Students can register, take quiz
 
 **Live Documentation:** [https://priyansupattanaik.github.io/CDAC_python_project/](https://priyansupattanaik.github.io/CDAC_python_project/)
 
+> **Enable GitHub Pages (one-time):** Go to [Repository Settings → Pages](https://github.com/priyansupattanaik/CDAC_python_project/settings/pages), set **Source** to **Deploy from a branch**, choose branch **`gh-pages`** and folder **`/ (root)`**, then click **Save**. The site goes live in 1–2 minutes.
+
 ## Features
 
 - Student registration and login

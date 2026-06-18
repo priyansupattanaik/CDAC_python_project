@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Take Quiz</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+        .btn-cancel { text-decoration: none; padding: 10px 15px; background: #95a5a6; color: white; border-radius: 4px; font-weight: 600; }
+        .question-block { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #f1f1f1; }
+        .question-text { font-size: 1.2em; font-weight: bold; margin-bottom: 15px; color: #2c3e50; }
+        .option-lbl { display: block; margin-bottom: 10px; cursor: pointer; padding: 10px; background: #fdfdfd; border: 1px solid #ddd; border-radius: 6px; transition: background 0.2s; }
+        .option-lbl:hover { background: #f0f7ff; border-color: #b3d4fc; }
+        .btn-submit { display: block; width: 100%; padding: 15px; background: #27ae60; color: white; border: none; border-radius: 6px; font-size: 1.2em; font-weight: bold; cursor: pointer; transition: background 0.3s; }
+        .btn-submit:hover { background: #219150; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2 style="margin:0;">📝 Dynamic Quiz Test</h2>
+            <a href="{{ url_for('dashboard') }}" class="btn-cancel">Cancel & Back</a>
+        </div>
+        
+        <form method="POST">
+            {% for q in questions %}
+            <div class="question-block">
+                <div class="question-text">Q{{ loop.index }}: {{ q[0] }}</div>
+                
+                <label class="option-lbl"><input type="radio" name="q_{{ loop.index0 }}" value="{{ q[1] }}" required> {{ q[1] }}</label>
+                <label class="option-lbl"><input type="radio" name="q_{{ loop.index0 }}" value="{{ q[2] }}" required> {{ q[2] }}</label>
+                <label class="option-lbl"><input type="radio" name="q_{{ loop.index0 }}" value="{{ q[3] }}" required> {{ q[3] }}</label>
+                <label class="option-lbl"><input type="radio" name="q_{{ loop.index0 }}" value="{{ q[4] }}" required> {{ q[4] }}</label>
+            </div>
+            {% endfor %}
+            <button class="btn-submit" type="submit">Submit Answer</button>
+        </form>
+    </div>
+</body>
+</html>

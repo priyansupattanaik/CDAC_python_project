@@ -27,3 +27,4 @@ question,opt1,opt2,opt3,opt4,answer
     print(x)","[10, 20, 30]","[10, 20]","[20, 30]",Error,"[10, 20]"
 "10. What will happen?
     print(int('abc'))",0,None,ValueError,TypeError,ValueError
+What is the encapsulation?,"Bundling data and methods that operate on that data within a single unit (class), while restricting direct access to some components.",Hiding internal state and requiring all interaction to be performed through an object's methods.,Protecting data integrity by preventing external code from directly modifying internal variables.,Using access modifiers (like private and public) to expose only necessary functionality and conceal implementation details.,"Bundling data and methods that operate on that data within a single unit (class), while restricting direct access to some components."

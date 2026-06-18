@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - {{ role }}</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f4f7f6;
+        color: #333;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 30px 20px;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #e1e4e8;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+      }
+      .header h2 {
+        margin: 0;
+        color: #2c3e50;
+      }
+      .user-badge {
+        color: #7f8c8d;
+        font-weight: normal;
+        font-size: 0.8em;
+      }
+      .logout {
+        text-decoration: none;
+        padding: 10px 20px;
+        background: #e74c3c;
+        color: white;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: background 0.3s;
+      }
+      .logout:hover {
+        background: #c0392b;
+      }
+
+      /* Stats Grid */
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 30px;
+      }
+      .stat-card {
+        padding: 25px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+        text-align: center;
+        border-top: 4px solid #4a90e2;
+      }
+      .stat-card h3 {
+        margin: 0;
+        color: #7f8c8d;
+        font-size: 0.9em;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .stat-card p {
+        margin: 15px 0 0;
+        font-size: 2.5em;
+        font-weight: bold;
+        color: #2c3e50;
+      }
+
+      /* Charts */
+      .charts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 20px;
+        justify-content: center;
+      }
+      .chart-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+        text-align: center;
+      }
+      .chart-card img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 6px;
+      }
+
+      /* Tables */
+      .table-container {
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+        overflow: hidden;
+        margin-top: 10px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 15px 20px;
+        text-align: left;
+      }
+      th {
+        background-color: #f8f9fa;
+        color: #2c3e50;
+        font-weight: 600;
+        border-bottom: 2px solid #e1e4e8;
+      }
+      td {
+        border-bottom: 1px solid #eee;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover {
+        background-color: #fcfcfc;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 80px 20px;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+        color: #7f8c8d;
+      }
+
+      /* Action buttons */
+      .btn-action {
+        display: inline-block;
+        text-decoration: none;
+        padding: 12px 25px;
+        background: #27ae60;
+        color: white;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 1.1em;
+        margin-bottom: 25px;
+        transition: background 0.3s;
+      }
+      .btn-action:hover {
+        background: #219150;
+      }
+
+      /* Flashing Messages */
+      .flash {
+        padding: 15px;
+        margin-bottom: 20px;
+        border-radius: 6px;
+        font-weight: 500;
+      }
+      .flash.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .flash.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>
+          {{ username }} <span class="user-badge">({{ role }} View)</span>
+        </h2>
+        <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+      </div>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, msg in messages %}
+      <div class="flash {{ category }}">{{ msg }}</div>
+      {% endfor %} {% endif %} {% endwith %} {% if role == 'Student' %}
+      <a
+        href="{{ url_for('take_quiz') }}"
+        class="btn-action"
+        style="display: block; text-align: center"
+        >✍️ Take a New Quiz</a
+      >
+      <div style="text-align: center; margin-bottom: 30px">
+        <a
+          href="{{ url_for('update_password') }}"
+          style="
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #f39c12;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-right: 10px;
+          "
+          >🔒 Update Password</a
+        >
+        <a
+          href="{{ url_for('delete_account') }}"
+          style="
+            text-decoration: none;
+            padding: 10px 20px;
+            background: #e74c3c;
+            color: white;
+            border-radius: 6px;
+            font-weight: 600;
+          "
+          >🗑️ Delete Account</a
+        >
+      </div>
+      {% elif role == 'Admin' %}
+      <a
+        href="{{ url_for('add_question') }}"
+        class="btn-action"
+        style="display: block; text-align: center"
+        >➕ Add Question to Bank</a
+      >
+
+      <h3 style="color: #2c3e50; margin-bottom: 10px">
+        Question Bank Repository
+      </h3>
+      <div
+        class="table-container"
+        style="overflow-x: auto; margin-bottom: 30px"
+      >
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Question Block</th>
+              <th>Correct Answer</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for q in questions %}
+            <tr>
+              <td>{{ loop.index }}</td>
+              <td>{{ q[0] }}</td>
+              <td>
+                <span style="color: #27ae60; font-weight: bold"
+                  >{{ q[5] }}</span
+                >
+              </td>
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="3" style="text-align: center; padding: 20px">
+                No questions in the bank yet. Add some!
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% endif %} {% if empty %}
+      <div class="empty-state">
+        <h3>No Data Available!</h3>
+        <p>Looks like there are no quiz records to display right now.</p>
+      </div>
+      {% else %} {% if role == 'Student' %}
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Total Quizzes Taken</h3>
+          <p>{{ quizzes }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Correct Answers</h3>
+          <p>{{ correct }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Wrong Answers</h3>
+          <p>{{ wrong }}</p>
+        </div>
+        <div class="stat-card">
+          <h3>Average Score</h3>
+          <p>{{ avg }}</p>
+        </div>
+      </div>
+
+      <div class="charts">
+        <div class="chart-card">
+          <img
+            src="data:image/png;base64,{{ chart1 }}"
+            alt="Performance Line Chart"
+          />
+        </div>
+        <div class="chart-card">
+          <img
+            src="data:image/png;base64,{{ chart2 }}"
+            alt="Accuracy Pie Chart"
+          />
+        </div>
+      </div>
+
+      {% else %}
+      <!-- Admin View -->
+      <div class="charts" style="margin-bottom: 30px; display: block">
+        <div class="chart-card">
+          <img
+            src="data:image/png;base64,{{ chart1 }}"
+            alt="Global Student Bar Chart"
+            style="max-height: 400px"
+          />
+        </div>
+      </div>
+
+      <h3 style="color: #2c3e50; margin-top: 40px; margin-bottom: 10px">
+        Global Leaderboard
+      </h3>
+      <div class="table-container">{{ leaderboard | safe }}</div>
+      {% endif %} {% endif %}
+    </div>
+  </body>
+</html>

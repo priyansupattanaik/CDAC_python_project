@@ -3,285 +3,40 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online Quiz System | CDAC Python Project</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      background: #0f172a;
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
-    .hero {
-      background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 60%, #1a1a2e 100%);
-      padding: 80px 24px 60px;
-      text-align: center;
-      border-bottom: 1px solid #1e293b;
-    }
-    .hero h1 {
-      font-size: 2.6rem;
-      font-weight: 700;
-      color: #f8fafc;
-      margin-bottom: 12px;
-    }
-    .hero p {
-      font-size: 1.15rem;
-      color: #94a3b8;
-      max-width: 600px;
-      margin: 0 auto 28px;
-    }
-    .badge {
-      display: inline-block;
-      background: #1e40af;
-      color: #bfdbfe;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      margin-bottom: 20px;
-    }
-    .btn-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-    .btn {
-      display: inline-block;
-      padding: 12px 28px;
-      border-radius: 8px;
-      font-weight: 600;
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: #3b82f6;
-      color: white;
-      box-shadow: 0 4px 14px rgba(59,130,246,0.4);
-    }
-    .btn-outline {
-      background: transparent;
-      color: #94a3b8;
-      border: 1px solid #334155;
-    }
-    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-    section { padding: 56px 0; }
-    section h2 {
-      font-size: 1.6rem;
-      color: #f1f5f9;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #1e40af;
-      display: inline-block;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
-    }
-    .card {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 12px;
-      padding: 24px;
-    }
-    .card h3 { color: #60a5fa; font-size: 1rem; margin-bottom: 8px; }
-    .card p { color: #94a3b8; font-size: 0.9rem; }
-    .card .icon { font-size: 1.8rem; margin-bottom: 12px; }
-    pre {
-      background: #0f172a;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 20px;
-      overflow-x: auto;
-      font-size: 0.88rem;
-      color: #a5f3fc;
-      margin-top: 16px;
-      line-height: 1.7;
-    }
-    code { font-family: 'Consolas', 'Courier New', monospace; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 16px;
-      font-size: 0.9rem;
-    }
-    th, td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid #334155;
-    }
-    th { background: #1e293b; color: #93c5fd; font-weight: 600; }
-    td { color: #cbd5e1; }
-    .tree {
-      background: #1e293b;
-      border: 1px solid #334155;
-      border-radius: 8px;
-      padding: 20px;
-      font-family: 'Consolas', monospace;
-      font-size: 0.85rem;
-      color: #86efac;
-      margin-top: 16px;
-      line-height: 1.8;
-    }
-    .note {
-      background: #172554;
-      border-left: 4px solid #3b82f6;
-      padding: 16px 20px;
-      border-radius: 0 8px 8px 0;
-      margin-top: 20px;
-      color: #bfdbfe;
-      font-size: 0.9rem;
-    }
-    footer {
-      text-align: center;
-      padding: 40px 24px;
-      border-top: 1px solid #1e293b;
-      color: #64748b;
-      font-size: 0.85rem;
-    }
-    footer a { color: #60a5fa; text-decoration: none; }
-  </style>
+  <title>Quiz Portal Login</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-  <div class="hero">
-    <div class="badge">CDAC Python Project</div>
-    <h1>Online Quiz System</h1>
-    <p>Performance analytics, student dashboards, admin controls — built with Python, Flask, and CSV storage.</p>
-    <div class="btn-row">
-      <a href="https://github.com/priyansupattanaik/CDAC_python_project" class="btn btn-primary">View on GitHub</a>
-      <a href="#setup" class="btn btn-outline">Setup Guide</a>
+  <div class="center-box">
+    <div class="auth-box">
+      <h2>Quiz Portal</h2>
+      <p class="subtitle">Log in to take the quiz</p>
+      <div id="flash"></div>
+      <form id="loginForm">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit" class="btn btn-primary">Sign In</button>
+      </form>
+      <p style="margin-top:20px;"><a href="register.html">Don't have an account? Register</a></p>
     </div>
   </div>
-
-  <div class="container">
-
-    <section id="features">
-      <h2>Features</h2>
-      <div class="grid">
-        <div class="card">
-          <div class="icon">👤</div>
-          <h3>Student Portal</h3>
-          <p>Register, login, take quizzes, and track your scores with charts and statistics.</p>
-        </div>
-        <div class="card">
-          <div class="icon">📊</div>
-          <h3>Performance Analytics</h3>
-          <p>Line charts for score trends, pie charts for accuracy, and detailed attempt history.</p>
-        </div>
-        <div class="card">
-          <div class="icon">🛡️</div>
-          <h3>Admin Dashboard</h3>
-          <p>Global leaderboard, per-student metrics, and question bank management.</p>
-        </div>
-        <div class="card">
-          <div class="icon">📁</div>
-          <h3>CSV Storage</h3>
-          <p>No database required. Users, results, and questions stored in simple CSV files.</p>
-        </div>
-        <div class="card">
-          <div class="icon">💻</div>
-          <h3>Dual Interface</h3>
-          <p>Run as a terminal CLI app or a full Flask web application.</p>
-        </div>
-        <div class="card">
-          <div class="icon">✅</div>
-          <h3>Input Validation</h3>
-          <p>Username, password, and answer validation with clear error messages.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="stack">
-      <h2>Tech Stack</h2>
-      <table>
-        <tr><th>Component</th><th>Technology</th></tr>
-        <tr><td>Language</td><td>Python 3.11+</td></tr>
-        <tr><td>Web Framework</td><td>Flask 2.3</td></tr>
-        <tr><td>Data Analysis</td><td>Pandas, NumPy</td></tr>
-        <tr><td>Charts</td><td>Matplotlib</td></tr>
-        <tr><td>Storage</td><td>CSV Files</td></tr>
-        <tr><td>OOP</td><td>Abstract Base Classes (User, QuizUser, Admin)</td></tr>
-      </table>
-    </section>
-
-    <section id="structure">
-      <h2>Project Structure</h2>
-      <div class="tree">
-CDAC_python_project/
-├── main.py           → CLI application
-├── flask_app.py      → Web application
-├── storage.py        → CSV file operations
-├── validators.py     → Input validation
-├── models.py         → User / Admin classes
-├── users.csv         → Registered accounts
-├── results.csv       → Quiz scores
-├── questions.csv     → Question bank
-├── requirements.txt  → Dependencies
-└── templates/        → HTML pages
-      </div>
-    </section>
-
-    <section id="setup">
-      <h2>Setup &amp; Run</h2>
-
-      <h3 style="color:#93c5fd; margin: 24px 0 8px; font-size:1rem;">1. Clone &amp; install</h3>
-      <pre><code>git clone https://github.com/priyansupattanaik/CDAC_python_project.git
-cd CDAC_python_project
-python -m venv .venv
-
-# Windows
-.venv\Scripts\activate
-
-# Linux / Mac
-source .venv/bin/activate
-
-pip install -r requirements.txt</code></pre>
-
-      <h3 style="color:#93c5fd; margin: 24px 0 8px; font-size:1rem;">2. Run web app</h3>
-      <pre><code>python flask_app.py</code></pre>
-      <p style="color:#94a3b8; margin-top:8px; font-size:0.9rem;">Open <strong style="color:#60a5fa;">http://localhost:5000</strong> in your browser.</p>
-
-      <h3 style="color:#93c5fd; margin: 24px 0 8px; font-size:1rem;">3. Run CLI app</h3>
-      <pre><code>python main.py</code></pre>
-
-      <div class="note">
-        <strong>Admin login:</strong> username <code>admin</code> / password <code>admin</code><br>
-        Students must register a new account before taking quizzes.
-      </div>
-    </section>
-
-    <section id="workflow">
-      <h2>How It Works</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>1. Register</h3>
-          <p>Student creates an account. Data saved to <code>users.csv</code>.</p>
-        </div>
-        <div class="card">
-          <h3>2. Take Quiz</h3>
-          <p>Questions loaded from <code>questions.csv</code>. Answers checked on submit.</p>
-        </div>
-        <div class="card">
-          <h3>3. Save Results</h3>
-          <p>Score written to <code>results.csv</code> for analytics.</p>
-        </div>
-        <div class="card">
-          <h3>4. View Analytics</h3>
-          <p>Charts generated with Matplotlib and shown on the dashboard.</p>
-        </div>
-      </div>
-    </section>
-
-  </div>
-
-  <footer>
-    <p>Built by <strong>Priyansu Pattanaik</strong> — CDAC Python Project</p>
-    <p style="margin-top:8px;">
-      <a href="https://github.com/priyansupattanaik/CDAC_python_project">GitHub Repository</a>
-    </p>
-  </footer>
-
+  <script src="js/config.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    initStorage().then(() => {
+      document.getElementById("loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const result = login(fd.get("username").trim(), fd.get("password"));
+        if (result.ok) {
+          location.href = page("dashboard.html");
+        } else {
+          document.getElementById("flash").innerHTML =
+            '<div class="flash error">' + result.msg + "</div>";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
